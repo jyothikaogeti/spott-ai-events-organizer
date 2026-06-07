@@ -1,0 +1,34 @@
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+export default function ExploreLayout({ children }) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const isMainExplorePage = pathname === "/explore";
+
+  return (
+    <div className="min-h-screen pb-16">
+      <div className="max-w-7xl mx-auto px-6">
+        {!isMainExplorePage && (
+          <div className="mb-6">
+            <Button
+              variant="ghost"
+              className="gap-2 -ml-2"
+              onClick={() => router.push("/explore")}
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Explore
+            </Button>
+          </div>
+        )}
+
+        {children}
+      </div>
+    </div>
+  );
+}
