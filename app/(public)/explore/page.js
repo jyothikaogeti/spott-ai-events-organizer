@@ -126,7 +126,7 @@ export default function ExplorePage() {
 
                     <div className="relative h-full flex flex-col justify-end p-8 md:p-12">
                       <Badge variant="secondary" className="w-fit mb-4">
-                        {featuredEvent.city},
+                        {featuredEvent.city},{" "}
                         {featuredEvent.state || featuredEvent.country}
                       </Badge>
 

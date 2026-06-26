@@ -161,7 +161,7 @@ export default function EventDashboardPage() {
 
             <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
               <Badge variant="outline">
-                {getCategoryIcon(event.category)}
+                {getCategoryIcon(event.category)}{" "}
                 {getCategoryLabel(event.category)}
               </Badge>
 
