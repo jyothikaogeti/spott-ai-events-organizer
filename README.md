@@ -121,37 +121,57 @@ The application combines:
 
 ```text
 spott-ai-events-organizer/
+├── actions/
+│   ├── auth.actions.js            # Clerk auth helpers (sign-in / sign-out)
+│   ├── event.actions.js           # Create, update, delete & fetch events
+│   └── registration.actions.js    # Event registration & ticket actions
+│
 ├── app/
-│   ├── (auth)/                   # Sign-in / sign-up pages (Clerk)
-│   ├── (protected)/               # Create event, my events, my tickets (auth-gated)
-│   ├── (public)/                  # Explore hub & public event detail pages
-│   ├── api/generate-event/        # Gemini AI event-generation Route Handler
-│   ├── ConvexClientProvider.js     # Clerk ↔ Convex auth bridge
-│   ├── layout.js                   # Root layout & global providers
-│   └── page.js                     # Landing page
+│   ├── api/generate-event/        # Gemini AI event-generation API route
+│   ├── auth/                      # Clerk auth pages
+│   ├── dashboard/                 # Protected user dashboard
+│   ├── explore/                   # Public explore & event listing pages
+│   ├── event/[slug]/              # Public event detail page
+│   ├── layout.js                  # Root layout & providers
+│   └── page.js                    # Landing page
+│
 ├── components/
-│   ├── ui/                        # shadcn/ui primitives (Button, Dialog, Tabs...)
-│   ├── EventCard.js                 # Polymorphic event card (grid/list variants)
-│   ├── Header.js / Footer.js
-│   ├── OnboardingModal.js            # Interests + location onboarding wizard
-│   ├── SearchLocationBar.js           # Debounced search + location selector
-│   ├── UnsplashImagePicker.js          # Cover image search
-│   └── UpgradeModal.js                  # Clerk Billing paywall
+│   ├── ui/                        # shadcn/ui primitives
+│   ├── EventCard.js               # Reusable event card
+│   ├── EventForm.js               # Create/edit event form
+│   ├── Header.js
+│   ├── Footer.js
+│   ├── OnboardingModal.js         # Interests & location onboarding
+│   ├── SearchBar.js               # Search + location selector
+│   ├── ImagePicker.js             # Unsplash image search
+│   └── UpgradeModal.js            # Billing/paywall modal
+│
 ├── convex/
-│   ├── schema.js                   # Table & index definitions
-│   ├── users.js / events.js / registrations.js
-│   ├── dashboard.js / explore.js / search.js
-│   ├── seed.js                      # Demo data seeding
-│   └── auth.config.js                # Clerk JWT verification config
+│   ├── schema.js                  # Database schema & indexes
+│   ├── auth.config.js             # Clerk JWT config
+│   ├── users.js                   # User queries & mutations
+│   ├── events.js                  # Event queries & mutations
+│   ├── registrations.js           # Ticket/registration logic
+│   ├── dashboard.js               # Dashboard queries
+│   ├── explore.js                 # Explore feed queries
+│   └── seed.js                    # Demo seed data
+│
 ├── hooks/
-│   ├── useConvexQuery.js / useConvexMutation.js  # Data-fetching abstraction
-│   ├── useStoreUser.js                # JIT user provisioning on sign-in
-│   └── useOnboarding.js                # Onboarding gating logic
+│   ├── useConvex.js               # Shared Convex query/mutation hooks
+│   ├── useOnboarding.js           # Onboarding state logic
+│   └── useStoreUser.js            # Auto-create user on sign-in
+│
 ├── lib/
-│   ├── data.js                      # Static category catalogue
-│   ├── helper.js                     # Slug, date, QR, color utilities
-│   └── utils.js                       # Tailwind class merger (`cn()`)
-├── proxy.js                          # Route protection (Next.js 16 middleware)
+│   ├── convex.js                  # Convex client/provider setup
+│   ├── gemini.js                  # Gemini AI integration
+│   ├── data.js                    # Static categories & constants
+│   ├── helpers.js                 # Slug, QR, date, color utilities
+│   └── utils.js                   # Shared helper utilities
+│
+├── public/
+│   └── spott-logo.png
+│
+├── proxy.js                       # Route protection middleware
 └── package.json
 ```
 
